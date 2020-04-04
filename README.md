@@ -1,5 +1,3 @@
-# docker-nginx
-
 Nginx is a simple webserver with php support. The config files reside in /config for easy user customization.
 
 nginx
@@ -75,7 +73,7 @@ In this instance PUID=1000 and PGID=1000, to find yours use id user as below:
 
   $ id username
     uid=1000(dockeruser) gid=1000(dockergroup) groups=1000(dockergroup)
- 
+
 
 Application Setup
 Add your web files to /config/www for hosting.
@@ -91,5 +89,3 @@ image version number
 docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/nginx
 Updating Info
 Most of our images are static, versioned, and require an image update and container recreation to update the app inside. With some exceptions (ie. nextcloud, plex), we do not recommend or support updating apps inside the container. Please consult the Application Setup section above to see if it is recommended for the image.
-
-
