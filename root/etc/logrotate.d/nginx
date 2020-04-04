@@ -1,4 +1,4 @@
-/config/log/nginx/*.log {
+/config/logs/nginx/*.log {
   weekly
   rotate 14
   compress
