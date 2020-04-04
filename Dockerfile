@@ -20,4 +20,5 @@ COPY root/ /
 
 # expose ports 80 and 443
 EXPOSE 80 443
-VOLUME /config /www
+VOLUME /config
+VOLUME /www
