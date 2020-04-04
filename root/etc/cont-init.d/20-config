@@ -11,9 +11,9 @@ mkdir -p /config/{nginx/sites-available,logs/nginx,logs/nginx/sites,rules,conf.d
 [[ ! -f /config/nginx/fastcgi_params ]] \
   && cp /default/fastcgi_params /config/nginx/fastcgi_params
 [[ ! -f /config/nginx/sites-available/default ]] \
-  && cp /default/nginx/sites-available/default /config/nginx/sites-available/default
+  && cp /default/default /config/nginx/sites-available/default
 [[ $(find /www -type f | wc -l) -eq 0 ]] \
-  && cp /defaults/index.html /www/index.html
+  && cp /default/index.html /www/index.html
 
 # set ownership and permissions
 chown -R abc:abc /config
