@@ -11,7 +11,7 @@ ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 
 # install nginx
 RUN apt-get update \
-	&& apt-get install -y nginx \
+	&& apt-get install -y nginx pgrep \
 	&& echo "*** CONFIGURE NGINX ***" \
 	&& rm -rf /etc/nginx/nginx.conf /etc/nginx/conf.d/default.conf /etc/nginx/sites-available \
 	&& apt-get clean
