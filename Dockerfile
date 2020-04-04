@@ -9,15 +9,15 @@ LABEL maintainer="Deanen Perumal"
 # modify S6 behaviour
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 
-# create user
-RUN groupmod -g 1000 users && \
-	useradd -u 911 -U -d /config -s /bin/false abc && \
-	usermod -G users abc && \
-	mkdir -p /config
-
 # install nginx
+RUN apt-get update \
+	&& apt-get install -y nginx \
+	&& echo "*** CONFIGURE NGINX ***" \
+	&& rm -f /etc/nginx/nginx.conf /etc/nginx/conf.d/default.conf /etc/nginx/sites-available \
 
-RUN apt-get update && \
-	apt-get install -y nginx && \
-	echo "CONFIGURE NGINX" && \
-	rm -f /etc/nginx/nginx.conf /etc/nginx/conf.d /etc/nginx/sites-available
+# copy local directories and files
+COPY root/ /
+
+# expose ports 80 and 443
+EXPOSE 80 443
+VOLUME /config /www
