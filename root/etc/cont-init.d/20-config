@@ -1,7 +1,7 @@
 #!/usr/bin/with-contenv bash
 
 # Create directories for nginx
-mkdir -p /config/{nginx/sites-available,logs/nginx,logs/nginx/sites,rules,conf.d,certs}  \
+mkdir -p /config/{nginx/sites-enabled,logs/nginx,logs/nginx/sites,rules,conf.d,certs}  \
 
 # copy default config files to the /config/nginx folder only if they do not exist
 [[ ! -f /config/nginx/nginx.conf ]] \
@@ -10,8 +10,8 @@ mkdir -p /config/{nginx/sites-available,logs/nginx,logs/nginx/sites,rules,conf.d
   && cp /default/fastcgi.conf /config/nginx/fastcgi.conf
 [[ ! -f /config/nginx/fastcgi_params ]] \
   && cp /default/fastcgi_params /config/nginx/fastcgi_params
-[[ ! -f /config/nginx/sites-available/default ]] \
-  && cp /default/default /config/nginx/sites-available/default
+[[ ! -f /config/nginx/sites-enabled/default ]] \
+  && cp /default/default /config/nginx/sites-enabled/default
 [[ $(find /www -type f | wc -l) -eq 0 ]] \
   && cp /default/index.html /www/index.html
 
