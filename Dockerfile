@@ -13,12 +13,12 @@ ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 RUN apt-get update \
 	&& apt-get install -y nginx \
 	&& echo "*** CONFIGURE NGINX ***" \
-	&& rm -f /etc/nginx/nginx.conf /etc/nginx/conf.d/default.conf /etc/nginx/sites-available \
+	&& rm -rf /etc/nginx/nginx.conf /etc/nginx/conf.d/default.conf /etc/nginx/sites-available \
+	&& apt-get clean
 
 # copy local directories and files
 COPY root/ /
 
 # expose ports 80 and 443
 EXPOSE 80 443
-VOLUME /config
-VOLUME /www
+VOLUME /config /www
