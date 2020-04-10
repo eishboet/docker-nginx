@@ -6,6 +6,9 @@ ARG VERSION
 LABEL build_version="nomad version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="Deanen Perumal"
 
+# copy local directories and files
+COPY root/ /
+
 # install nginx
 RUN apt-get update \
 	&& apt-get install -y nginx \
@@ -13,9 +16,6 @@ RUN apt-get update \
 	&& rm -rf /etc/nginx/nginx.conf /etc/nginx/conf.d /etc/nginx/sites-available /etc/nginx/fastcgi_params /etc/nginx/fastcgi.conf \
 	&& apt-get clean \
 	&& chmod +x /usr/local/sbin/nginx_config_setup.sh
-
-# copy local directories and files
-COPY root/ /
 
 VOLUME /config /www
 
