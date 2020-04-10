@@ -24,4 +24,4 @@ EXPOSE 80 443
 
 STOPSIGNAL SIGTERM
 
-ENTRYPOINT["/usr/local/sbin/nginx_config_setup.sh"]
+CMD["/usr/local/sbin/nginx_config_setup.sh"]
