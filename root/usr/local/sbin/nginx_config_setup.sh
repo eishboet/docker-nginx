@@ -1,7 +1,7 @@
-#!/usr/bin/with-contenv bash
+#!/bin/sh
 
 # Create directories for nginx
-mkdir -p /config/{nginx/sites-enabled,logs/nginx,logs/nginx/sites,rules,conf.d,certs}  \
+mkdir -p /config/{nginx/sites-enabled,rules,conf.d,certs},{logs/nginx/sites}  \
 
 # copy default config files to the /config/nginx folder only if they do not exist
 [[ ! -f /config/nginx/nginx.conf ]] \
