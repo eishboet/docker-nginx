@@ -11,8 +11,8 @@ RUN apt-get update \
 	&& apt-get install -y nginx \
 	&& echo "*** CONFIGURE NGINX ***" \
 	&& rm -rf /etc/nginx/nginx.conf /etc/nginx/conf.d /etc/nginx/sites-available /etc/nginx/fastcgi_params /etc/nginx/fastcgi.conf \
-	&& apt-get clean 
-	#&& chmod +x /usr/local/sbin/nginx_config_setup.sh
+	&& apt-get clean
+	&& chmod +x /usr/local/sbin/nginx_config_setup.sh
 
 # copy local directories and files
 COPY root/ /
