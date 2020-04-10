@@ -19,3 +19,5 @@ mkdir -p /config/{nginx/sites-enabled,rules,conf.d,certs},{logs/nginx/sites}  \
 chown -R abc:abc /config
 chmod -R g+w /config/nginx /www
 chmod -R 644 /etc/logrotate.d
+
+exec nginx -c /config/nginx.conf -g daemon-off
