@@ -19,7 +19,6 @@ mkdir -p /config/logs/{nginx,sites}  \
   && cp /default/index.html /www/index.html
 
 # set ownership and permissions
-chown -R abc:abc /config
 chmod -R g+w /config/nginx /www
 chmod -R 644 /etc/logrotate.d
 
