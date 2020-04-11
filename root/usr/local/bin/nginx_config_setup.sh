@@ -22,4 +22,4 @@ mkdir -p /config/logs/{nginx,sites}  \
 chmod -R g+w /config/nginx /www
 chmod -R 644 /etc/logrotate.d
 
-exec "nginx -c /config/nginx.conf -g 'daemon off'"
+exec "nginx -c /config/nginx/nginx.conf -g 'daemon off'"
