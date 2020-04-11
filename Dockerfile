@@ -18,11 +18,12 @@ VOLUME /config /www
 # copy local directories and files
 COPY root/ /
 
-RUN chmod +x /usr/local/sbin/nginx_config_setup.sh
+RUN chmod +x /usr/local/sbin/nginx_config_setup.sh \
+	&& ln -sf /usr/local/sbin/nginx_config_setup.sh /
 
 # expose ports 80 and 443
 EXPOSE 80 443
 
 STOPSIGNAL SIGTERM
 
-ENTRYPOINT ["/usr/local/sbin/nginx_config_setup.sh"]
+ENTRYPOINT ["nginx_config_setup.sh"]
