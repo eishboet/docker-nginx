@@ -2,7 +2,7 @@ FROM debian:buster-slim
 
 # set version label
 ARG BUILD_DATE=11042020
-ARG VERSION=V1.0
+ARG VERSION=1.0
 LABEL build_version="nomad version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="Deanen Perumal"
 
@@ -10,20 +10,24 @@ LABEL maintainer="Deanen Perumal"
 RUN apt-get update \
 	&& apt-get install -y nginx \
 	&& echo "*** CONFIGURE NGINX ***" \
-	&& rm -rf /etc/nginx/nginx.conf /etc/nginx/conf.d /etc/nginx/sites-available /etc/nginx/fastcgi_params /etc/nginx/fastcgi.conf \
-	&& apt-get clean
+	&& apt-get clean \
+	&& mkdir -p /config/{ssl,dhparam,log/nginx} /www \
+	&& mv /etc/nginx/nginx.conf /config/ \
+	&& mv /etc/nginx/fastcgi_params /config/ \
+	&& mv /etc/nginx/conf.d /config/conf.d \
+	&& mv /etc/nginx/sites-enabled /config/sites-enabled \
+	&& ln -s /config/nginx/nginx.conf /etc/nginx/nginx.conf \
+	&& ln -s /config/nginx/fastcgi_params /etc/nginx/fastcgi_params \
+	&& ln -s /config/nginx/conf.d /etc/nginx/conf.d \
+	&& ln -s /config/sites-enabled /etc/nginx/sites-enabled \
+	&& ln -s /config/ssl /etc/nginx/ssl \
+	&& ln -s /config/dhparam /etc/nginx/dhparam
 
 VOLUME /config /www
-
-# copy local directories and files
-COPY root/ /
-
-RUN chmod +x /usr/local/bin/nginx_config_setup.sh \
-	&& ln -sf /usr/local/bin/nginx_config_setup.sh /
 
 # expose ports 80 and 443
 EXPOSE 80 443
 
 STOPSIGNAL SIGTERM
 
-ENTRYPOINT ["nginx_config_setup.sh"]
+CMD ["nginx", "-g", "daemon off;"]
