@@ -16,9 +16,9 @@ RUN apt-get update \
 	&& mv /etc/nginx/fastcgi_params /config/ \
 	&& mv /etc/nginx/conf.d /config/conf.d \
 	&& mv /etc/nginx/sites-enabled /config/sites-enabled \
-	&& ln -s /config/nginx/nginx.conf /etc/nginx/nginx.conf \
-	&& ln -s /config/nginx/fastcgi_params /etc/nginx/fastcgi_params \
-	&& ln -s /config/nginx/conf.d /etc/nginx/conf.d \
+	&& ln -s /config/nginx.conf /etc/nginx/nginx.conf \
+	&& ln -s /config/fastcgi_params /etc/nginx/fastcgi_params \
+	&& ln -s /config/conf.d /etc/nginx/conf.d \
 	&& ln -s /config/sites-enabled /etc/nginx/sites-enabled \
 	&& ln -s /config/ssl /etc/nginx/ssl \
 	&& ln -s /config/dhparam /etc/nginx/dhparam
