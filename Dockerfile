@@ -12,10 +12,10 @@ RUN apt-get update \
 	&& echo "*** CONFIGURE NGINX ***" \
 	&& apt-get clean \
 	&& mkdir -p /config/{nginx,ssl,dhparam,log/nginx} /www \
-	&& mv /etc/nginx/nginx.conf /config/nginx/ \
-	&& mv /etc/nginx/fastcgi_params /config/nginx/ \
+	&& mv /etc/nginx/nginx.conf /config/nginx/nginx.conf \
+	&& mv /etc/nginx/fastcgi_params /config/nginx/fastcgi_params \
 	&& mv /etc/nginx/conf.d /config/conf.d \
-	&& mv /etc/nginx/sites-enabled /config/nginx/ \
+	&& mv /etc/nginx/sites-enabled /config/nginx/sites-enabled \
 	&& cp /var/www/html/* /www/ \
 	&& ln -s /config/nginx/nginx.conf /etc/nginx/nginx.conf \
 	&& ln -s /config/nginx/fastcgi_params /etc/nginx/fastcgi_params \
